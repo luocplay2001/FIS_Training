@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class SinhVien {
     private String mssv;
@@ -132,5 +133,23 @@ public class SinhVien {
                 ", ten='" + ten + '\'' +
                 ", monDaHoc=" + monDaHoc +
                 '}';
+    }
+
+    public  List<Diem> getDiemByCondition(Predicate<Diem> predicate) {
+        List<Diem> dsDiem = new ArrayList<>();
+        for(Diem diem : monDaHoc) {
+            if(predicate.test(diem)) {
+                dsDiem.add(diem);
+            }
+        }
+        return dsDiem;
+    }
+
+    public static boolean dauPredicate(Diem diem) {
+        return diem.getDiem() > 5 ? true : false;
+    }
+
+    public static boolean rotPredicate(Diem diem) {
+        return diem.getDiem() < 5 ? true : false;
     }
 }

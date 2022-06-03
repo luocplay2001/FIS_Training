@@ -3,6 +3,7 @@ package com.example;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,5 +37,27 @@ class SinhVienTest {
 
     @Test
     void xepLoai() {
+    }
+
+    @Test
+    void testGetDiemByCondition() {
+        Diem diem1 = new Diem(new MonHoc("CTDL",3,1),6);
+        Diem diem2 = new Diem(new MonHoc("OOP",2,1),9);
+
+        SinhVien sv = new SinhVien("123","Nguyen Van Kien");
+        sv.themDiem(diem1);
+        sv.themDiem(diem2);
+
+        List<Diem> dsDiem = sv.getDiemByCondition(diem -> {
+            return diem.getDiem() > 6 ? true : false;
+        });
+
+        System.out.println(dsDiem);
+
+        dsDiem = sv.getDiemByCondition(SinhVien::dauPredicate);
+        System.out.println(dsDiem);
+
+        dsDiem = sv.getDiemByCondition(SinhVien::rotPredicate);
+        System.out.println(dsDiem);
     }
 }
