@@ -152,4 +152,9 @@ public class SinhVien {
     public static boolean rotPredicate(Diem diem) {
         return diem.getDiem() < 5 ? true : false;
     }
+
+    public boolean isGraduate() {
+        return this.monDaHoc.stream()
+                .allMatch(SinhVien::dauPredicate) ? true : false;
+    }
 }

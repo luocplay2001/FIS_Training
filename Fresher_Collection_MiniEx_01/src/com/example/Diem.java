@@ -7,8 +7,10 @@ public class Diem implements Comparable<Diem>, Serializable {
     private MonHoc mon;
     private int diem;
 
-    public Diem(MonHoc mon, int diem) {
+    public Diem(MonHoc mon, int diem) throws  IllegalArgumentException{
         this.mon = mon;
+        if(diem < 0 || diem > 10)
+            throw new IllegalArgumentException("Diem >= 0 va <= 9");
         this.diem = diem;
     }
 
@@ -53,7 +55,10 @@ public class Diem implements Comparable<Diem>, Serializable {
     }
 
     public void setDiem(int diem) {
-        this.diem = diem;
+        if(diem >= 0 && diem <= 10)
+            this.diem = diem;
+        else
+            throw  new IllegalArgumentException("diem is invalid");
     }
 
     @Override

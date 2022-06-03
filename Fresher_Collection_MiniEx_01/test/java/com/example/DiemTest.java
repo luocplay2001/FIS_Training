@@ -12,9 +12,9 @@ class DiemTest {
 
     @Test
     void testEquals() {
-        Diem diem1 = new Diem(new MonHoc("CTDL",3,1),8);
-        Diem diem2 = new Diem(new MonHoc("OOP",2,1),7);
-        Diem diem3 = new Diem(new MonHoc("CTDL",3,1),8);
+        Diem diem1 = new Diem(new MonHoc("CTDL", 3, 1), 8);
+        Diem diem2 = new Diem(new MonHoc("OOP", 2, 1), 7);
+        Diem diem3 = new Diem(new MonHoc("CTDL", 3, 1), 8);
 
         assertTrue(diem1.equals(diem3));
     }
@@ -29,7 +29,7 @@ class DiemTest {
 
     @Test
     void testClone() {
-        Diem diem = new Diem(new MonHoc("OOP",3,1),8);
+        Diem diem = new Diem(new MonHoc("OOP", 3, 1), 8);
 //        assertEquals(1, "OOP",);
     }
 
@@ -65,9 +65,9 @@ class DiemTest {
     @Test
     void testWithCollection() {
         List<Diem> danhSachDiem = new ArrayList<>();
-        Diem diem1 = new Diem(new MonHoc("CTDL",3,1),8);
-        Diem diem2 = new Diem(new MonHoc("OOP",2,1),7);
-        Diem diem3 = new Diem(new MonHoc("Anh Văn",2,1),8);
+        Diem diem1 = new Diem(new MonHoc("CTDL", 3, 1), 8);
+        Diem diem2 = new Diem(new MonHoc("OOP", 2, 1), 7);
+        Diem diem3 = new Diem(new MonHoc("Anh Văn", 2, 1), 8);
         danhSachDiem.add(diem1);
         danhSachDiem.add(diem2);
         danhSachDiem.add(diem3);
@@ -75,20 +75,36 @@ class DiemTest {
         Collections.sort(danhSachDiem);
         System.out.println(danhSachDiem);
 
-        Collections.sort(danhSachDiem, (o1,o2) ->
+        Collections.sort(danhSachDiem, (o1, o2) ->
         {
-            if(o1.getDiem() > o2.getDiem())
+            if (o1.getDiem() > o2.getDiem())
                 return 1;
-            else if(o1.getDiem() < o2.getDiem()) {
+            else if (o1.getDiem() < o2.getDiem()) {
                 return -1;
             } else {
-                if(o1.getMon().getTen().compareTo(o2.getMon().getTen()) > 0)
+                if (o1.getMon().getTen().compareTo(o2.getMon().getTen()) > 0)
                     return 1;
-                else if(o1.getMon().getTen().compareTo(o2.getMon().getTen()) < 0)
+                else if (o1.getMon().getTen().compareTo(o2.getMon().getTen()) < 0)
                     return -1;
                 return 0;
             }
         });
         System.out.println(danhSachDiem);
+    }
+
+    @Test
+    void testContructor() {
+        MonHoc monHoc1 = new MonHoc("CTDL", 3, 1);
+        Diem diem = new Diem(monHoc1, 5);
+        int inputUser = -1;
+        try {
+            diem.setDiem(inputUser);
+            System.out.println(diem);
+        } catch (Exception ex) {
+            System.out.println("Diem is invalid");
+            // log into file
+            System.out.println("log file");
+            ex.printStackTrace();
+        }
     }
 }

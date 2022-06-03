@@ -4,13 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.ToIntFunction;
 import java.util.stream.Stream;
 
 public class StreamTest {
@@ -26,11 +24,18 @@ public class StreamTest {
     @Test
     void testOfFunction() {
         List<String> list = Arrays.asList("Kien","Quyet","Chien","Kien","Nam");
-        list.stream()
-            .distinct()
-                .filter(predicateStr)
-            .sorted(Comparator.reverseOrder())
-                .distinct().forEach(consumerStr);
+//        list.stream()
+//            .distinct()
+//                .filter(predicateStr)
+//            .sorted(Comparator.reverseOrder())
+//                .distinct().forEach(consumerStr);
+        OptionalDouble optional = list.stream().filter(predicateStr)
+                .mapToDouble(value -> {return 0.0;})
+                .average();
+        if(optional.isPresent())
+            System.out.println("Value: " + optional.getAsDouble());
+        else
+            System.out.println("No Value");
     }
 
     @Test

@@ -59,5 +59,10 @@ class SinhVienTest {
 
         dsDiem = sv.getDiemByCondition(SinhVien::rotPredicate);
         System.out.println(dsDiem);
+
+        if(sv.isGraduate())
+            System.out.println("Du dieu kien tot nghiep");
+        else
+            System.out.println("Khong du dieu kien tot nghiep");
     }
 }
