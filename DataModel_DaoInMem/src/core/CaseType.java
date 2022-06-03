@@ -1,4 +1,5 @@
 package core;
 
-public class CaseType {
+public enum CaseType {
+    UNCATEGORIZED,INFRACTION,MISDEMEANOR,FELONY
 }
