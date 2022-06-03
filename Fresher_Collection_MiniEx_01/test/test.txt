@@ -1,0 +1,30 @@
+package com.example;
+
+import org.junit.jupiter.api.Test;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+public class StreamTest {
+
+    @Test
+    void testOfFunction() {
+        Stream.of("Kien","Quyet","Chien","Kien")
+            .distinct().forEach(System.out::println);
+    }
+
+    @Test
+    void testFunctionMap() {
+        try {
+            long noOfWords = Files.lines(Paths.get("test/test.txt"))
+                    .flatMap(l -> Arrays.stream(l.split(" +")))
+                    .distinct()
+                    .count();
+            System.out.println("No of Words: " + noOfWords);
+        } catch (Exception e) {
+
+        }
+    }
+}
