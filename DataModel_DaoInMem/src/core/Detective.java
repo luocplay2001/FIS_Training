@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Detective {
-    private Long evidenceId;
+    private Long detectiveId;
     private int version;
     private LocalDateTime cretedAt;
     private LocalDateTime modifiedAt;
@@ -19,4 +19,6 @@ public class Detective {
     private EmploymentStatus status;
     private Set<CriminalCase> criminalCases;
     private Set<TrackEntry> trackEntries;
+
+
 }

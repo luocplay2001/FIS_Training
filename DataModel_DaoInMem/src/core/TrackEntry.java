@@ -3,7 +3,7 @@ package core;
 import java.time.LocalDateTime;
 
 public class TrackEntry {
-    private Long evidenceId;
+    private Long trackEntryId;
     private int version;
     private LocalDateTime cretedAt;
     private LocalDateTime modifiedAt;

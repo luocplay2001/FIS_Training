@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Storage {
-    private Long evidenceId;
+    private Long storageId;
     private int version;
     private LocalDateTime cretedAt;
     private LocalDateTime modifiedAt;

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class CriminalCase {
-    private Long evidenceId;
+    private Long criminalCaseId;
     private int version;
     private LocalDateTime cretedAt;
     private LocalDateTime modifiedAt;
