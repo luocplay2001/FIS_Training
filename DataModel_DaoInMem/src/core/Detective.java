@@ -1,6 +1,7 @@
 package core;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -187,5 +188,31 @@ public class Detective {
                 ", criminalCases=" + criminalCases +
                 ", trackEntries=" + trackEntries +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Detective detective = (Detective) o;
+        return version == detective.version && Objects.equals(detectiveId, detective.detectiveId) &&
+                Objects.equals(cretedAt, detective.cretedAt)
+                && Objects.equals(modifiedAt, detective.modifiedAt)
+                && Objects.equals(username, detective.username)
+                && Objects.equals(firstName, detective.firstName)
+                && Objects.equals(lastName, detective.lastName)
+                && Objects.equals(password, detective.password)
+                && Objects.equals(hiringDate, detective.hiringDate)
+                && Objects.equals(badgeNumber, detective.badgeNumber)
+                && rank == detective.rank && Objects.equals(armed, detective.armed)
+                && status == detective.status && Objects.equals(criminalCases, detective.criminalCases)
+                && Objects.equals(trackEntries, detective.trackEntries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(detectiveId, version, cretedAt, modifiedAt, username
+                , firstName, lastName, password, hiringDate, badgeNumber, rank, armed
+                , status, criminalCases, trackEntries);
     }
 }
