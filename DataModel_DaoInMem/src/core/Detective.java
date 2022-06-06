@@ -1,5 +1,8 @@
 package core;
 
+import core.enums.EmploymentStatus;
+import core.enums.Rank;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;

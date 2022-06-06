@@ -1,5 +1,8 @@
 package core;
 
+import core.enums.CaseStatus;
+import core.enums.CaseType;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 

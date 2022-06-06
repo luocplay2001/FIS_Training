@@ -1,5 +1,7 @@
 package core;
 
+import core.enums.TrackAction;
+
 import java.time.LocalDateTime;
 
 public class TrackEntry {
