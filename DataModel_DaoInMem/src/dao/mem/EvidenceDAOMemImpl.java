@@ -53,7 +53,7 @@ public class EvidenceDAOMemImpl implements IEvidenceDAO {
 
     @Override
     public void remove(Long evidenceId){
-         evidenceList.removeIf(d -> evidenceId == (d.getEvidenceId()));
+         evidenceList.removeIf(e -> evidenceId == (e.getEvidenceId()));
     }
 
 }

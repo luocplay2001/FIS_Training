@@ -83,6 +83,9 @@ public class Storage {
         this.evidenceSet = evidenceSet;
     }
 
+    public void setStorage(Storage storage) {
+
+    }
     @Override
     public String toString() {
         return "Storage{" +

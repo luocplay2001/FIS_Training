@@ -102,6 +102,9 @@ public class TrackEntry {
         this.resson = resson;
     }
 
+    public void setTrackEntry(TrackEntry trackEntry) {
+
+    }
     @Override
     public String toString() {
         return "TrackEntry{" +
