@@ -169,6 +169,10 @@ public class Detective {
         this.trackEntries = trackEntries;
     }
 
+    public void setDetective(Detective detective) {
+
+    }
+
     @Override
     public String toString() {
         return "Detective{" +

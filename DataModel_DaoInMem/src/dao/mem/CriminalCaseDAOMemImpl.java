@@ -8,10 +8,16 @@ import java.util.List;
 import java.util.Optional;  
 
 public class CriminalCaseDAOMemImpl implements ICriminalCaseDAO {
-    private List<CriminalCase> criminalCaseList;
+    private List<CriminalCase> criminalCaseList = new ArrayList<>();
 
     public CriminalCaseDAOMemImpl() {
-        criminalCaseList = new ArrayList<>();
+
+    }
+
+    private static CriminalCaseDAOMemImpl instance = new CriminalCaseDAOMemImpl();
+
+    public static CriminalCaseDAOMemImpl getInstance(){
+        return instance;
     }
 
     @Override
@@ -30,8 +36,24 @@ public class CriminalCaseDAOMemImpl implements ICriminalCaseDAO {
     }
 
     @Override
+    public List<CriminalCase> findAll() {
+        return this.criminalCaseList;
+    }
+
+    @Override
+    public CriminalCase update(CriminalCase criminalCase) {
+        for(CriminalCase c: this.criminalCaseList){
+            if(criminalCase.getCriminalCaseId() == c.getCriminalCaseId()) {
+                c.setCriminal(criminalCase);
+                return c;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void remove(Long criminalCaseId){
-        criminalCaseList.removeIf(c -> criminalCaseId == (c.getCriminalCaseId()));
+         criminalCaseList.removeIf(c -> criminalCaseId == (c.getCriminalCaseId()));
     }
 
 }

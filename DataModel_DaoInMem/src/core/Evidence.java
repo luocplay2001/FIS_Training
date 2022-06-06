@@ -124,6 +124,10 @@ public class Evidence {
         this.trackEntries = trackEntries;
     }
 
+    public void setEvidence(Evidence evidence) {
+
+    }
+
     @Override
     public String toString() {
         return "Evidence{" +

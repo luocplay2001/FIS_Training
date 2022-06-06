@@ -145,6 +145,21 @@ public class CriminalCase {
         this.assigned = assigned;
     }
 
+    public void setCriminal(CriminalCase criminalCase) {
+        setAssigned(criminalCase.getAssigned());
+        setCretedAt(criminalCase.getCretedAt());
+        setEvidenceSet(criminalCase.getEvidenceSet());
+        setNotes(criminalCase.getNotes());
+        setDetailedDescription(criminalCase.getDetailedDescription());
+        setLeadInvestigator(criminalCase.getLeadInvestigator());
+        setModifiedAt(criminalCase.getModifiedAt());
+        setNumber(criminalCase.getNumber());
+        setShortDescription(criminalCase.getShortDescription());
+        setStatus(criminalCase.getStatus());
+        setType(criminalCase.getType());
+        setVersion(criminalCase.getVersion());
+    }
+
     @Override
     public String toString() {
         return "CriminalCase{" +
