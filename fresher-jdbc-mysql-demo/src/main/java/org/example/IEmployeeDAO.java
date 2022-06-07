@@ -6,4 +6,6 @@ public interface IEmployeeDAO {
     public List<Employee> getAll();
 
     public boolean add(Employee employee);
+
+    void remove(Employee employee);
 }

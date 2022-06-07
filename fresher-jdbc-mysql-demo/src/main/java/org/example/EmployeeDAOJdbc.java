@@ -1,21 +1,17 @@
 package org.example;
 
-import com.mysql.cj.protocol.a.LocalDateTimeValueEncoder;
 import org.example.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOJdbc implements IEmployeeDAO{
     public final static String URL = "jdbc:mysql://localhost:3306/jdbc_demo";
     public final static String USER_NAME = "root";
-    public final static String PASSWORD = "root";
+    public final static String PASSWORD = "12112001";
 
     private final static Logger logger = LoggerFactory.getLogger(EmployeeDAOJdbc.class);
 
@@ -52,12 +48,6 @@ public class EmployeeDAOJdbc implements IEmployeeDAO{
         // Create the "url"
         // assume database server is running on the localhost
         try (Connection con = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
-//            Statement stmt = con.createStatement();
-//            String query = "INSERT INTO Employee VALUES (" +
-//                    employee.getId() + ", '" +
-//                    employee.getName() + "', " +
-//                    employee.getSalary() + ", '" +
-//                    employee.getCreateDate().format(DateTimeFormatter.ISO_DATE_TIME) + "')";
 
             PreparedStatement stmt = con.prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?)");
 
@@ -75,5 +65,26 @@ public class EmployeeDAOJdbc implements IEmployeeDAO{
         }
         // end of try-with-resources
         return false;
+    }
+
+    @Override
+    public void remove(Employee employee) {
+        // Create the "url"
+        // assume database server is running on the localhost
+        try (Connection con = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
+
+            PreparedStatement stmt = con.prepareStatement("DELETE Employee WHERE ID = (?)");
+//            stmt.executeUpdate(1,employee.getId());
+
+            stmt.setLong(1, employee.getId());
+
+//            if (stmt.executeUpdate() > 0) {
+//                return true;
+//            }
+        } catch (SQLException e) {
+            //Log error
+            logger.error(e.toString());
+        }
+        // end of try-with-resources
     }
 }

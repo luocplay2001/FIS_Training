@@ -18,7 +18,7 @@ public class EmployeeDAOJdbcTest {
     @Test
     void add() {
         IEmployeeDAO employeeDAO = new EmployeeDAOJdbc();
-        Employee employee = new Employee(20, "Nguyen Thanh Nhan", 103.);
+        Employee employee = new Employee(4, "Nguyen Thanh Nhan", 103.);
 
         assertTrue(employeeDAO.add(employee));
 
