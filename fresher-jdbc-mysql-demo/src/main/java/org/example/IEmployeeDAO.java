@@ -8,4 +8,6 @@ public interface IEmployeeDAO {
     public boolean add(Employee employee);
 
     void remove(Employee employee);
+
+    public boolean addAll(List<Employee> employees);
 }

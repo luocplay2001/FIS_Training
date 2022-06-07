@@ -1,6 +1,8 @@
 package org.example;
 
+import lombok.experimental.NonFinal;
 import org.example.util.DateUtil;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,5 +88,44 @@ public class EmployeeDAOJdbc implements IEmployeeDAO{
             logger.error(e.toString());
         }
         // end of try-with-resources
+    }
+
+    @Override
+    public boolean addAll(@NotNull List<Employee> employees) {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+            con.setAutoCommit(false);
+
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Employee VALUES (?, ?, ?, ?)");
+
+            for(Employee e : employees) {
+                stmt.setLong(1, e.getId());
+                stmt.setString(2, e.getName());
+                stmt.setDouble(3, e.getSalary());
+                stmt.setString(4, DateUtil.getString(e.getCreateDate()));
+                stmt.executeUpdate();
+            }
+
+            con.commit();
+        } catch (SQLException e) {
+            //Log error
+            logger.error(e.toString());
+            try {
+                con.rollback();
+                return false;
+            } catch (SQLException ex) {
+                logger.error(ex.toString());
+            }
+        }
+        finally {
+            try{
+                con.close();
+            } catch (SQLException ex) {
+                logger.error(ex.toString());
+            }
+        }
+        // end of try-with-resources
+        return true;
     }
 }
