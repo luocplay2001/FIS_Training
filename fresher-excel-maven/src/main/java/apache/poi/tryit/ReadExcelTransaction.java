@@ -76,10 +76,12 @@ public class ReadExcelTransaction {
                         transaction.setMessage((String) getCellValue(cell));
                         break;
                     case COLUMN_INDEX_DATETIME:
-                        System.out.println(cell.getCellTypeEnum());
-                        DataFormatter formatter = new DataFormatter();
-                        String temp = formatter.formatCellValue(cell);
-                        System.out.println(temp);
+//                        System.out.println(cell.getCellTypeEnum());
+//                        DataFormatter formatter = new DataFormatter();
+//                        String temp = formatter.formatCellValue(cell);
+//                        System.out.println(temp);
+                        SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/YYYY hh:mm:ss");
+                        transaction.setDateTime(sdf.format(cell.getDateCellValue()));
                         break;
                     default:
                         break;

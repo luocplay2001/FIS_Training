@@ -8,12 +8,12 @@ public class Transaction {
     private String bankAcount;
     private double amount;
     private String message;
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     public Transaction() {
     }
 
-    public Transaction(String type, String bankAcount, double amount, String message, LocalDateTime dateTime) {
+    public Transaction(String type, String bankAcount, double amount, String message, String dateTime) {
         this.type = type;
         this.bankAcount = bankAcount;
         this.amount = amount;
@@ -53,11 +53,11 @@ public class Transaction {
         this.message = message;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

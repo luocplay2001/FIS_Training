@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Stack;
 
 
@@ -10,5 +11,8 @@ public class Main {
         System.out.println(st.pop());
         System.out.println(st);
         System.out.println(st.size());
+
+        Double d = 123.0;
+
     }
 }
