@@ -47,7 +47,7 @@ public class ReadExcelTransaction {
                 // Ignore header
                 continue;
             }
-
+    
             // Get all cells
             Iterator<Cell> cellIterator = nextRow.cellIterator();
 
