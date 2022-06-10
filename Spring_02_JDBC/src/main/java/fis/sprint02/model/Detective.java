@@ -10,17 +10,17 @@ import java.util.Set;
 @Data
 public class Detective extends AbstractEntity {
 
-    String badgeNumber;
-    Rank rank;
-    Boolean armed;
-    EmploymentStatus status;
-    Set<CriminalCase> criminalCases;
-    Set<TrackEntry> trackEntries;
-    String username;
-    String firstName;
-    String lastName;
-    String password;
-    LocalDateTime hiringDate;
+    private String username;
+    private String firstName;
+    private String lastName;
+    private String password;
+    private LocalDateTime hiringDate;
+    private String badgeNumber;
+    private Rank rank;
+    private Boolean armed;
+    private EmploymentStatus status;
+    private Set<CriminalCase> criminalCases;
+    private Set<TrackEntry> trackEntries;
     public Detective() {
     }
 

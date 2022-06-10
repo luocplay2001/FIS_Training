@@ -2,10 +2,13 @@ package fis.sprint02.model;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class Storage extends AbstractEntity {
-    String name;
-    String location;
+    private String name;
+    private String location;
+    private Set<Evidence> evidenceSet;
 
     public Storage() {
     }

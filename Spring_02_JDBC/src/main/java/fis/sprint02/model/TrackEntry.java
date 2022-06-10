@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 @Data
 public class TrackEntry extends AbstractEntity {
-    LocalDateTime date;
-    Evidence evidence;
-    Detective detective;
-    TrackAction action;
-    String reason;
+    private LocalDateTime date;
+    private Evidence evidence;
+    private Detective detective;
+    private TrackAction action;
+    private String resson;
 
     public TrackEntry() {
     }

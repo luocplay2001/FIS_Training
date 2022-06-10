@@ -8,15 +8,15 @@ import java.util.Set;
 
 @Data
 public class CriminalCase extends AbstractEntity {
-    String number;
-    CaseType type;
-    String shortDescription;
-    String detailedDescription;
-    CaseStatus status;
-    String notes;
-    Set<Evidence> evidenceSet;
-    Detective leadInvestigator;
-    Set<Detective> assigned;
+    private String number;
+    private CaseType type;
+    private String shortDescription;
+    private String detailedDescription;
+    private CaseStatus status;
+    private String notes;
+    private Set<Evidence> evidenceSet;
+    private Detective leadInvestigator; // lead
+    private Set<Detective> assigned;
 
     public CriminalCase() {
     }

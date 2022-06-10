@@ -6,13 +6,13 @@ import java.util.Set;
 
 @Data
 public class Evidence extends AbstractEntity {
-    CriminalCase criminalCase;
-    Storage storage;
-    String number;
-    String itemName;
-    String notes;
-    Boolean archived;
-    Set<TrackEntry> trackEntries;
+    private String number;
+    private String itemName;
+    private String notes;
+    private Boolean archived;
+    private CriminalCase criminalCase;
+    private Storage storage;
+    private Set<TrackEntry> trackEntries;
 
     public Evidence() {
     }
