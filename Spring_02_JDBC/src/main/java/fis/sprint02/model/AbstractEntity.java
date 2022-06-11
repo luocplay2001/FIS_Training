@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class AbstractEntity {
-    private long id;
+    private Long id;
     private int version;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;

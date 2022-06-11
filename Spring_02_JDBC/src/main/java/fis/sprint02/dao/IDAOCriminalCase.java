@@ -1,4 +1,6 @@
 package fis.sprint02.dao;
 
-public interface IDAOCriminalCase{
+import fis.sprint02.model.CriminalCase;
+
+public interface IDAOCriminalCase extends IDAO<CriminalCase> {
 }

@@ -12,7 +12,7 @@ public interface IDAO<T> {
     List<T> getAll();
 
     //UPDATE
-    T update(T t);
+    void update(T t);
 
     //DELETE
     T delete(T t);
