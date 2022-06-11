@@ -29,14 +29,13 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
     public List<CriminalCase> getAll() {
         List<CriminalCase> criminalCaseList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
-            PreparedStatement stmt = con.prepareStatement("");
+            PreparedStatement stmt = con.prepareStatement("SELECT * FROM criminal_case");
             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 CriminalCase criminalCase = DBMapper.getCriminalCase(rs);
-                logger.debug(criminalCase.toString());
-
-                if(criminalCase != null) criminalCaseList.add(criminalCase);
+                if(criminalCase != null)
+                    criminalCaseList.add(criminalCase);
             } // end of while
 
         }catch (Exception ex) {
