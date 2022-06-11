@@ -21,12 +21,12 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
     }
 
     @Override
-    public Optional<CriminalCase> get(long id) {
+    public Optional<CriminalCase> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<CriminalCase> getAll() {
+    public List<CriminalCase> findAll() {
         List<CriminalCase> criminalCaseList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM criminal_case");
@@ -37,7 +37,7 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
                 if(criminalCase != null)
                     criminalCaseList.add(criminalCase);
             } // end of while
-
+            return criminalCaseList;
         }catch (Exception ex) {
             logger.error(ex.toString());
         }

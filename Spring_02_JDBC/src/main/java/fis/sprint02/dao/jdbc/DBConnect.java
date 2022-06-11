@@ -14,4 +14,7 @@ public class DBConnect {
     private static HikariDataSource ds;
     private static HikariConfig config = new HikariConfig("/datasource.properties");
 
+    static {
+        ds = new HikariDataSource(config);
+    }
 }

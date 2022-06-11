@@ -15,18 +15,22 @@ import java.util.Optional;
 
 public class JDBCDetective implements IDAODetective {
     private final static Logger logger = LoggerFactory.getLogger(JDBCDetective.class);
+
+    public JDBCDetective() {
+    }
+
     @Override
     public Detective save(Detective detective) {
         return null;
     }
 
     @Override
-    public Optional<Detective> get(long id) {
+    public Optional<Detective> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Detective> getAll() {
+    public List<Detective> findAll() {
         List<Detective> detectiveList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM detective");

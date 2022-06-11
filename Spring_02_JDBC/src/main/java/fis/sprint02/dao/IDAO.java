@@ -8,8 +8,8 @@ public interface IDAO<T> {
     T save(T t);
 
     //READ | RETRIEVE
-    Optional<T> get(long id);
-    List<T> getAll();
+    Optional<T> findById(Long id);
+    List<T> findAll();
 
     //UPDATE
     void update(T t);

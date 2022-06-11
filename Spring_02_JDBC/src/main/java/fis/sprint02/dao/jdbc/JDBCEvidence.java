@@ -20,12 +20,12 @@ public class JDBCEvidence implements IDAOEvidence {
     }
 
     @Override
-    public Optional<Evidence> get(long id) {
+    public Optional<Evidence> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Evidence> getAll() {
+    public List<Evidence> findAll() {
         List<Evidence> evidenceList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM evidence");

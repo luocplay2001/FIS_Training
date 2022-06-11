@@ -20,12 +20,12 @@ public class JDBCTrackEntry implements IDAOTrackEntry {
     }
 
     @Override
-    public Optional<TrackEntry> get(long id) {
+    public Optional<TrackEntry> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<TrackEntry> getAll() {
+    public List<TrackEntry> findAll() {
         List<TrackEntry> trackEntryList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM track_entry");

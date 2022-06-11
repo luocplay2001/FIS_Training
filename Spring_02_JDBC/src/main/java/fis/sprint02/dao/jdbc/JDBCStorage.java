@@ -20,12 +20,12 @@ public class JDBCStorage implements IDAOStorage {
     }
 
     @Override
-    public Optional<Storage> get(long id) {
+    public Optional<Storage> findById(Long id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Storage> getAll() {
+    public List<Storage> findAll() {
         List<Storage> storageList = new ArrayList<>();
         try(Connection con = DBConnect.getConnection();
             PreparedStatement stmt = con.prepareStatement("SELECT * FROM storage");

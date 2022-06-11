@@ -8,14 +8,16 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class DBMapper {
+//    private static final JDBCDetective jdbcDetective = new JDBCDetective();
     private final static Logger logger = LoggerFactory.getLogger(JDBCCriminalCase.class);
     public static CriminalCase getCriminalCase(ResultSet rs) {
         try {
             CriminalCase criminalCase = new CriminalCase();
 
-            criminalCase.setId(rs.getLong("id"));
+            criminalCase.setId(rs.getLong("criminal_case_id"));
             criminalCase.setVersion(rs.getInt("version"));
             criminalCase.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
             criminalCase.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
@@ -24,9 +26,10 @@ public class DBMapper {
             criminalCase.setShortDescription(rs.getString("short_description"));
             criminalCase.setDetailedDescription(rs.getString("detailed_description"));
             criminalCase.setStatus(CaseStatus.valueOf(rs.getString("status")));
-            criminalCase.setNotes(rs.getString("note"));
-//            criminalCase.setLeadInvestigator();
-
+            criminalCase.setNotes(rs.getString("notes"));
+//            Optional<Detective> opt = new JDBCDetective().findById(rs.getLong("detective_id"));
+//            if(opt.isPresent())
+//                criminalCase.setLeadInvestigator(opt.get());
             //TODO add some add.
 
             return criminalCase;

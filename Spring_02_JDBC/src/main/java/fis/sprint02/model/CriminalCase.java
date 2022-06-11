@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -35,4 +36,6 @@ public class CriminalCase extends AbstractEntity {
         result = 31 * result + (assigned != null ? assigned.hashCode() : 0);
         return result;
     }
+
+
 }
