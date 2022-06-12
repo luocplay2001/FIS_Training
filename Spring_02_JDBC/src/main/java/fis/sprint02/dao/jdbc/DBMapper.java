@@ -3,6 +3,8 @@ package fis.sprint02.dao.jdbc;
 import fis.sprint02.model.*;
 import fis.sprint02.model.enums.CaseStatus;
 import fis.sprint02.model.enums.CaseType;
+import fis.sprint02.model.enums.EmploymentStatus;
+import fis.sprint02.model.enums.Rank;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +45,18 @@ public class DBMapper {
         try {
             Detective detective = new Detective();
             detective.setId(rs.getLong("detective_id"));
-
+            detective.setVersion(rs.getInt("version"));
+            detective.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
+            detective.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
+            detective.setUsername(rs.getString("username"));
+            detective.setFirstName(rs.getString("first_name"));
+            detective.setLastName(rs.getString("last_name"));
+            detective.setPassword(rs.getString("password"));
+            detective.setHiringDate(DBUtils.convertDateToLocalDateTime(rs.getDate("hiringDate")));
+            detective.setBadgeNumber(rs.getString("badgeNumber"));
+            detective.setRank(Rank.valueOf(rs.getString("rank")));
+            detective.setArmed(rs.getBoolean("armed"));
+            detective.setStatus(EmploymentStatus.valueOf(rs.getString("status")));
             return detective;
         }catch (SQLException ex){
             logger.error(ex.toString());

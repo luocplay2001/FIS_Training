@@ -22,6 +22,22 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
 
     @Override
     public Optional<CriminalCase> findById(Long id) {
+        try(Connection con = DBConnect.getConnection()) {
+            PreparedStatement stmt =
+                    con.prepareStatement("SELECT * FROM criminal_case WHERE criminal_case_id = ?");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            CriminalCase criminalCase = null;
+            if(rs.next()) {
+                criminalCase = DBMapper.getCriminalCase(rs);
+            }
+            Optional<CriminalCase> opt = Optional.of(criminalCase);
+            if(opt.isPresent())
+                return Optional.of(opt.get());
+
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        }
         return Optional.empty();
     }
 
@@ -51,6 +67,15 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
 
     @Override
     public CriminalCase delete(CriminalCase criminalCase) {
+        try(Connection con = DBConnect.getConnection()) {
+            PreparedStatement stmt =
+                    con.prepareStatement("DELETE FROM criminal_case WHERE criminal_case_id = ?");
+            stmt.setLong(1,criminalCase.getId());
+            stmt.executeUpdate();
+            return criminalCase;
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        }
         return null;
     }
 }

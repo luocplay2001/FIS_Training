@@ -41,7 +41,7 @@ public class JDBCDetective implements IDAODetective {
                 if(Detective != null)
                     detectiveList.add(Detective);
             } // end of while
-
+            return detectiveList;
         }catch (Exception ex) {
             logger.error(ex.toString());
         }
