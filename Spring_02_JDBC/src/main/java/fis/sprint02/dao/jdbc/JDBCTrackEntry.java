@@ -37,6 +37,7 @@ public class JDBCTrackEntry implements IDAOTrackEntry {
                     trackEntryList.add(trackEntry);
             } // end of while
 
+            return trackEntryList;
         }catch (Exception ex) {
             logger.error(ex.toString());
         }

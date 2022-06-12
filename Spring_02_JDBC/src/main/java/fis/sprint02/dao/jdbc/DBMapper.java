@@ -1,10 +1,7 @@
 package fis.sprint02.dao.jdbc;
 
 import fis.sprint02.model.*;
-import fis.sprint02.model.enums.CaseStatus;
-import fis.sprint02.model.enums.CaseType;
-import fis.sprint02.model.enums.EmploymentStatus;
-import fis.sprint02.model.enums.Rank;
+import fis.sprint02.model.enums.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,7 +65,12 @@ public class DBMapper {
         try {
             Evidence evidence = new Evidence();
             evidence.setId(rs.getLong("evidence_id"));
-
+            evidence.setVersion(rs.getInt("version"));
+            evidence.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
+            evidence.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
+            evidence.setNumber(rs.getString("number"));
+            evidence.setItemName(rs.getString("item_name"));
+            evidence.setNotes(rs.getString("notes"));
             return evidence;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -80,7 +82,11 @@ public class DBMapper {
         try {
             Storage storage = new Storage();
             storage.setId(rs.getLong("storage_id"));
-
+            storage.setVersion(rs.getInt("version"));
+            storage.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
+            storage.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
+            storage.setName(rs.getString("name"));
+            storage.setLocation(rs.getString("location"));
             return storage;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -92,7 +98,12 @@ public class DBMapper {
         try {
             TrackEntry trackEntry = new TrackEntry();
             trackEntry.setId(rs.getLong("track_entry_id"));
-
+            trackEntry.setVersion(rs.getInt("version"));
+            trackEntry.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
+            trackEntry.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
+            trackEntry.setDate(DBUtils.convertDateToLocalDateTime(rs.getDate("date")));
+            trackEntry.setAction(TrackAction.valueOf(rs.getString("action")));
+            trackEntry.setResson(rs.getString("resson"));
             return trackEntry;
         }catch (SQLException ex){
             logger.error(ex.toString());

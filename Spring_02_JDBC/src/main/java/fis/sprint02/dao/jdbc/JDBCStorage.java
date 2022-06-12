@@ -36,7 +36,7 @@ public class JDBCStorage implements IDAOStorage {
                 if(storage != null)
                     storageList.add(storage);
             } // end of while
-
+            return storageList;
         }catch (Exception ex) {
             logger.error(ex.toString());
         }

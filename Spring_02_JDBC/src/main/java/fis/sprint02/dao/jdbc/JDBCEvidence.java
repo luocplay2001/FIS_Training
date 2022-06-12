@@ -37,6 +37,7 @@ public class JDBCEvidence implements IDAOEvidence {
                     evidenceList.add(evidence);
             } // end of while
 
+            return evidenceList;
         }catch (Exception ex) {
             logger.error(ex.toString());
         }
