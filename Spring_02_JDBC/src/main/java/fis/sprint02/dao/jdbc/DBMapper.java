@@ -10,7 +10,13 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class DBMapper {
-//    private static final JDBCDetective jdbcDetective = new JDBCDetective();
+    private static final JDBCDetective jdbcDetective = new JDBCDetective();
+    private static final JDBCCriminalCase jdbcCriminalCase = new JDBCCriminalCase();
+    private static final JDBCEvidence jdbcEvidence = new JDBCEvidence();
+    private static final JDBCStorage jdbcStorage = new JDBCStorage();
+    private static final JDBCTrackEntry jdbcTrackEntry = new JDBCTrackEntry();
+    private static final JDBCCriminalDetective jdbcCriminalDetective = new JDBCCriminalDetective();
+
     private final static Logger logger = LoggerFactory.getLogger(JDBCCriminalCase.class);
     public static CriminalCase getCriminalCase(ResultSet rs) {
         try {
@@ -105,6 +111,23 @@ public class DBMapper {
             trackEntry.setAction(TrackAction.valueOf(rs.getString("action")));
             trackEntry.setResson(rs.getString("resson"));
             return trackEntry;
+        }catch (SQLException ex){
+            logger.error(ex.toString());
+        }
+        return null;
+    }
+
+    public static CriminalDetective getCriminalDetective(ResultSet rs) {
+        try {
+            CriminalDetective criminalDetective = new CriminalDetective();
+            criminalDetective.setId(rs.getLong("criminal_detective_id"));
+            Optional<Detective> optDetective = jdbcDetective.findById(rs.getLong("detective_id"));
+            if(optDetective.isPresent())
+                criminalDetective.setDetective(optDetective.get());
+            Optional<CriminalCase> optCriminal = jdbcCriminalCase.findById(rs.getLong("criminal_case_id"));
+            if(optCriminal.isPresent())
+                criminalDetective.setCriminalCase(optCriminal.get());
+            return criminalDetective;
         }catch (SQLException ex){
             logger.error(ex.toString());
         }
