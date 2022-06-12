@@ -1,6 +1,7 @@
 package fis.sprint02.dao.jdbc;
 
 import fis.sprint02.dao.IDAOTrackEntry;
+import fis.sprint02.model.Detective;
 import fis.sprint02.model.TrackEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,22 @@ public class JDBCTrackEntry implements IDAOTrackEntry {
 
     @Override
     public Optional<TrackEntry> findById(Long id) {
+        try(Connection con = DBConnect.getConnection()) {
+            PreparedStatement stmt =
+                    con.prepareStatement("SELECT * FROM track_entry WHERE track_entry_id = ?");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            TrackEntry trackEntry = null;
+            if(rs.next()) {
+                trackEntry = DBMapper.getTrackEntry(rs);
+            }
+            Optional<TrackEntry> opt = Optional.of(trackEntry);
+            if(opt.isPresent())
+                return Optional.of(opt.get());
+
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        }
         return Optional.empty();
     }
 

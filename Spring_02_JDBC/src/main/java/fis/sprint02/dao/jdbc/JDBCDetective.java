@@ -2,6 +2,7 @@ package fis.sprint02.dao.jdbc;
 
 import fis.sprint02.dao.IDAODetective;
 import fis.sprint02.dao.IDAODetective;
+import fis.sprint02.model.CriminalCase;
 import fis.sprint02.model.Detective;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,22 @@ public class JDBCDetective implements IDAODetective {
 
     @Override
     public Optional<Detective> findById(Long id) {
+        try(Connection con = DBConnect.getConnection()) {
+            PreparedStatement stmt =
+                    con.prepareStatement("SELECT * FROM detective WHERE detective_id = ?");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            Detective detective = null;
+            if(rs.next()) {
+                detective = DBMapper.getDetective(rs);
+            }
+            Optional<Detective> opt = Optional.of(detective);
+            if(opt.isPresent())
+                return Optional.of(opt.get());
+
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        }
         return Optional.empty();
     }
 

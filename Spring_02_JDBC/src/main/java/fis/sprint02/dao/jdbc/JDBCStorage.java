@@ -1,6 +1,7 @@
 package fis.sprint02.dao.jdbc;
 
 import fis.sprint02.dao.IDAOStorage;
+import fis.sprint02.model.Detective;
 import fis.sprint02.model.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,22 @@ public class JDBCStorage implements IDAOStorage {
 
     @Override
     public Optional<Storage> findById(Long id) {
+        try(Connection con = DBConnect.getConnection()) {
+            PreparedStatement stmt =
+                    con.prepareStatement("SELECT * FROM storage WHERE storage_id = ?");
+            stmt.setLong(1,id);
+            ResultSet rs = stmt.executeQuery();
+            Storage storage = null;
+            if(rs.next()) {
+                storage = DBMapper.getStorage(rs);
+            }
+            Optional<Storage> opt = Optional.of(storage);
+            if(opt.isPresent())
+                return Optional.of(opt.get());
+
+        }catch (Exception ex) {
+            logger.error(ex.toString());
+        }
         return Optional.empty();
     }
 
