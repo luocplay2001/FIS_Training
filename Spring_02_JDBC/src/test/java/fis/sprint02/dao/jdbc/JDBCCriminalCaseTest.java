@@ -16,7 +16,8 @@ class JDBCCriminalCaseTest {
     void findAll() {
         IDAOCriminalCase idaoCriminalCase = new JDBCCriminalCase();
         List<CriminalCase> criminalCaseList = idaoCriminalCase.findAll();
-        assertEquals(3,criminalCaseList.size());
+        System.out.println(criminalCaseList);
+        assertEquals(2,criminalCaseList.size());
     }
 
     @Test

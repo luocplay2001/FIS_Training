@@ -7,7 +7,9 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 public class DBMapper {
     private static final JDBCDetective jdbcDetective = new JDBCDetective();
@@ -32,11 +34,21 @@ public class DBMapper {
             criminalCase.setDetailedDescription(rs.getString("detailed_description"));
             criminalCase.setStatus(CaseStatus.valueOf(rs.getString("status")));
             criminalCase.setNotes(rs.getString("notes"));
-//            Optional<Detective> opt = new JDBCDetective().findById(rs.getLong("detective_id"));
-//            if(opt.isPresent())
-//                criminalCase.setLeadInvestigator(opt.get());
+            Optional<Detective> opt = jdbcDetective.findById(rs.getLong("lead_investigator"));
+            if(opt.isPresent())
+                criminalCase.setLeadInvestigator(opt.get());
             //TODO add some add.
-
+//            Set<Evidence> evidenceSet = new HashSet<>();
+//            jdbcEvidence.findAll().stream().filter(evidence ->
+//                    evidence.getCriminalCase().getId() == criminalCase.getId())
+//                    .forEach(evidence ->  evidenceSet.add(evidence));
+//            criminalCase.setEvidenceSet(evidenceSet);
+//            Set<Detective> detectiveSet = new HashSet<>();
+//            jdbcCriminalDetective.findAll().stream().filter(criminalDetective
+//                    -> criminalDetective.getCriminalCase().getId() == criminalCase.getId() &&
+//                    criminalDetective.getDetective().getId() != criminalCase.getLeadInvestigator().getId())
+//                    .forEach(criminalDetective -> detectiveSet.add(criminalDetective.getDetective()));
+//            criminalCase.setAssigned(detectiveSet);
             return criminalCase;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -60,6 +72,16 @@ public class DBMapper {
             detective.setRank(Rank.valueOf(rs.getString("rank")));
             detective.setArmed(rs.getBoolean("armed"));
             detective.setStatus(EmploymentStatus.valueOf(rs.getString("status")));
+//            Set<CriminalCase> criminalCaseSet = new HashSet<>();
+//            jdbcCriminalDetective.findAll().stream().filter(criminalDetective
+//                            -> criminalDetective.getDetective().getId() == detective.getId())
+//                    .forEach(criminalDetective -> criminalCaseSet.add(criminalDetective.getCriminalCase()));
+//            detective.setCriminalCases(criminalCaseSet);
+//            Set<TrackEntry> trackEntries = new HashSet<>();
+//            jdbcTrackEntry.findAll().stream().filter(trackEntry ->
+//                    trackEntry.getDetective().getId() == detective.getId())
+//                    .forEach(trackEntry -> trackEntries.add(trackEntry));
+//            detective.setTrackEntries(trackEntries);
             return detective;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -77,6 +99,19 @@ public class DBMapper {
             evidence.setNumber(rs.getString("number"));
             evidence.setItemName(rs.getString("item_name"));
             evidence.setNotes(rs.getString("notes"));
+            evidence.setArchived(rs.getBoolean("archived"));
+            Optional<CriminalCase> opt_criminal = jdbcCriminalCase.findById(rs.getLong("criminal_case_id"));
+            if(opt_criminal.isPresent())
+                evidence.setCriminalCase(opt_criminal.get());
+            Optional<Storage> opt_storage = jdbcStorage.findById(rs.getLong("storage_id"));
+            if(opt_storage.isPresent())
+                evidence.setStorage(opt_storage.get());
+
+//            Set<TrackEntry> trackEntries = new HashSet<>();
+//            jdbcTrackEntry.findAll().stream().filter(trackEntry ->
+//                            trackEntry.getEvidence().getId() == evidence.getId())
+//                    .forEach(trackEntry -> trackEntries.add(trackEntry));
+//            evidence.setTrackEntries(trackEntries);
             return evidence;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -93,6 +128,11 @@ public class DBMapper {
             storage.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
             storage.setName(rs.getString("name"));
             storage.setLocation(rs.getString("location"));
+//            Set<Evidence> evidenceSet = new HashSet<>();
+//            jdbcEvidence.findAll().stream().filter(evidence ->
+//                            evidence.getStorage().getId() == evidence.getId())
+//                    .forEach(evidence ->  evidenceSet.add(evidence));
+//            storage.setEvidenceSet(evidenceSet);
             return storage;
         }catch (SQLException ex){
             logger.error(ex.toString());
@@ -110,6 +150,12 @@ public class DBMapper {
             trackEntry.setDate(DBUtils.convertDateToLocalDateTime(rs.getDate("date")));
             trackEntry.setAction(TrackAction.valueOf(rs.getString("action")));
             trackEntry.setResson(rs.getString("resson"));
+            Optional<Detective> optDetective = jdbcDetective.findById(rs.getLong("detective_id"));
+            if(optDetective.isPresent())
+                trackEntry.setDetective(optDetective.get());
+            Optional<Evidence> optEvidence = jdbcEvidence.findById(rs.getLong("evidence_id"));
+            if(optEvidence.isPresent())
+                trackEntry.setEvidence(optEvidence.get());
             return trackEntry;
         }catch (SQLException ex){
             logger.error(ex.toString());
