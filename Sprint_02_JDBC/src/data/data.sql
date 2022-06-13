@@ -19,3 +19,5 @@ INSERT INTO `criminal_db`.`evidence` (`evidence_id`, `version`, `createdAt`, `mo
 INSERT INTO `criminal_db`.`track_entry` (`track_entry_id`, `version`, `createdAt`, `modifiedAt`, `date`, `evidence_id`, `detective_id`, `action`, `resson`) VALUES ('1', '1', '2022-06-10 12:03:48', '2022-06-10 16:25:24', '2022-06-10 16:25:24', '1', '1', 'SUBMITTED', 'resson');
 INSERT INTO `criminal_db`.`track_entry` (`track_entry_id`, `version`, `createdAt`, `modifiedAt`, `date`, `evidence_id`, `detective_id`, `action`, `resson`) VALUES ('2', '1', '2022-06-10 12:03:48', '2022-06-10 16:25:24', '2022-06-10 16:25:24', '1', '2', 'SUBMITTED', 'resson');
 INSERT INTO `criminal_db`.`track_entry` (`track_entry_id`, `version`, `createdAt`, `modifiedAt`, `date`, `evidence_id`, `detective_id`, `action`, `resson`) VALUES ('3', '1', '2022-06-10 12:03:48', '2022-06-10 16:25:24', '2022-06-10 16:25:24', '2', '3', 'SUBMITTED', 'resson');
+
+
