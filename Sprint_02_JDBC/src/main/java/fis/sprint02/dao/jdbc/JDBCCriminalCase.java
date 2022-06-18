@@ -19,8 +19,10 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
                     con.prepareStatement("INSERT INTO criminal_case values (?,?,?,?,?,?,?,?,?,?,?)");
             stmt.setLong(1,criminalCase.getId());
             stmt.setInt(2,criminalCase.getVersion());
-            stmt.setDate(3, Date.valueOf(criminalCase.getCreatedAt().toLocalDate()));
-            stmt.setDate(4, Date.valueOf(criminalCase.getModifiedAt().toLocalDate()));
+            stmt.setTimestamp(3,DBUtils.
+                    convertLocalDateTimeTimeSQLToLocalDateTimeCode(criminalCase.getCreatedAt()));
+            stmt.setTimestamp(4,
+                    DBUtils.convertLocalDateTimeTimeSQLToLocalDateTimeCode(criminalCase.getModifiedAt()));
             stmt.setString(5,criminalCase.getNumber());
             stmt.setString(6, criminalCase.getType().toString());
             stmt.setString(7,criminalCase.getShortDescription());
@@ -85,8 +87,10 @@ public class JDBCCriminalCase implements IDAOCriminalCase {
                             "short_description = ?, detailed_description = ?" +
                             ",status = ?, notes = ?, lead_investigator = ? WHERE criminal_case_id = ?");
             stmt.setInt(1,criminalCase.getVersion());
-            stmt.setDate(2, Date.valueOf(criminalCase.getCreatedAt().toLocalDate()));
-            stmt.setDate(3, Date.valueOf(criminalCase.getModifiedAt().toLocalDate()));
+            stmt.setTimestamp(3,DBUtils.
+                    convertLocalDateTimeTimeSQLToLocalDateTimeCode(criminalCase.getCreatedAt()));
+            stmt.setTimestamp(4,
+                    DBUtils.convertLocalDateTimeTimeSQLToLocalDateTimeCode(criminalCase.getModifiedAt()));
             stmt.setString(4,criminalCase.getNumber());
             stmt.setString(5, criminalCase.getType().toString());
             stmt.setString(6,criminalCase.getShortDescription());

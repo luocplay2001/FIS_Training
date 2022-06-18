@@ -28,6 +28,7 @@ public class DBMapper {
             criminalCase.setVersion(rs.getInt("version"));
             criminalCase.setCreatedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("createdAt")));
             criminalCase.setModifiedAt(DBUtils.convertDateToLocalDateTime(rs.getDate("modifiedAt")));
+//            criminalCase.setCreatedAt(rs.getTimestamp("createdAt").toLocalDateTime());
             criminalCase.setNumber(rs.getString("number"));
             criminalCase.setType(CaseType.valueOf(rs.getString("type")));
             criminalCase.setShortDescription(rs.getString("short_description"));
