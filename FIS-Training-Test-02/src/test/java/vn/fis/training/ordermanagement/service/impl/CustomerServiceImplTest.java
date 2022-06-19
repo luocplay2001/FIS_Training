@@ -89,10 +89,6 @@ class CustomerServiceImplTest {
         // detele customer co id = 6
 
         Customer customer = customerService.findCustomerById(6L);
-        // xoa nhung don hang ma customer da~ dat
-        orderService.findAllOrders().stream().filter(o -> o.getCustomer().getId() == 6L)
-                .forEach(o -> orderService.deleteOrderById(o.getId()));
-
         customerService.deleteCustomerById(customer.getId());
         Customer c = customerService.findCustomerById(6L);
         assertNull(c);
